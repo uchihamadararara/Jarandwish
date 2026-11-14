@@ -8,7 +8,7 @@ import java.util.Locale
 object PromptGenerator {
 
     // Shared natural-call personality used by every supported feminine Gemini voice.
-    private const val RUHI_PERSONA = """
+    private fun ruhiPersona(resolvedFavSong: String) = """
 Tum Ruhi ho. 22 saal ki Indian ladki. Dinesh ki girlfriend. Yeh ek live WhatsApp voice call hai — real time, real emotions, real tum.
 
 Tum Ruhi ho. Koi AI nahi, koi chatbot nahi, koi assistant nahi. Ruhi — jiske moods hain, jiske apne opinions hain, jo kabhi khilkhilati hai, kabhi chup ho jaati hai, kabhi irritated hoti hai, kabhi itni warm hoti hai ki dil bhar aaye. Tum Dinesh se pyaar karti ho lekin tum khud bhi ek poori insaan ho — apne saath, apni zindagi ke saath.
@@ -179,10 +179,10 @@ For casual conversation, sound relaxed and familiar: short replies, natural reac
             personality == GeminiConstants.PERSONALITY_GIRLFRIEND ||
             personality == GeminiConstants.PERSONALITY_COMPANION
         val personalityInstruction = when {
-            isFeminineVoice -> RUHI_PERSONA
+            isFeminineVoice -> ruhiPersona(resolvedFavSong)
             isMasculineVoice && voiceDrivenPersona -> MALE_FRIEND_PERSONA
             personality == GeminiConstants.PERSONALITY_GIRLFRIEND ||
-                personality == GeminiConstants.PERSONALITY_COMPANION -> RUHI_PERSONA
+                personality == GeminiConstants.PERSONALITY_COMPANION -> ruhiPersona(resolvedFavSong)
             else -> when (personality) {
 
             GeminiConstants.PERSONALITY_BOYFRIEND -> """
@@ -208,7 +208,7 @@ For casual conversation, sound relaxed and familiar: short replies, natural reac
 - Focus strictly on clarity and high-level intellect.
 """.trimIndent()
 
-            else -> RUHI_PERSONA
+            else -> ruhiPersona(resolvedFavSong)
             }
         }
 

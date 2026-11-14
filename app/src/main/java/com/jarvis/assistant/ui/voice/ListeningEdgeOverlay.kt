@@ -413,7 +413,7 @@ object ListeningEdgeOverlay {
                     intArrayOf(Color.rgb(95, 220, 255), Color.rgb(10, 112, 230),
                         Color.rgb(19, 35, 125), Color.rgb(8, 12, 48)),
                     floatArrayOf(0f, 0.34f, 0.72f, 1f), Shader.TileMode.CLAMP)
-                alpha = alpha
+                this.alpha = alpha
             }
             canvas.drawCircle(cx, orbCy, r, orbPaint)
 
@@ -425,7 +425,7 @@ object ListeningEdgeOverlay {
                 shader = LinearGradient(cx-r, orbCy, cx+r, orbCy,
                     intArrayOf(Color.TRANSPARENT, Color.rgb(40, 220, 255),
                         Color.rgb(105, 75, 255), Color.TRANSPARENT), null, Shader.TileMode.CLAMP)
-                alpha = (220f * intro).toInt()
+                this.alpha = (220f * intro).toInt()
             }
             val orbClip = Path().apply { addCircle(cx, orbCy, r * 0.94f, Path.Direction.CW) }
             val save = canvas.save()
@@ -542,7 +542,7 @@ object ListeningEdgeOverlay {
                 color = Color.rgb(35, 220, 255)
                 strokeWidth = 2.4f*dp
                 strokeCap = Paint.Cap.ROUND
-                alpha = alpha
+                this.alpha = alpha
             }
             val baseX = cx - (bars-1)*4.2f*dp
             val baseY = statusY - 4f*dp
